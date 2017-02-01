@@ -23,6 +23,8 @@ node {
 
 		archive "1st_job.txt"
 		
+		echo currentBuild.result
+		
 		if (currentBuild.result.equals("SUCCESS")) {
 			echo "Result SUCCESS !!!"
 			build job: "kz-aoki-1st-org/kz_aoki_2nd_repo/${env.BRANCH_NAME}", propagate: false, wait: false
