@@ -23,7 +23,7 @@ node {
 
 		archive "1st_job.txt"
 		
-		echo currentBuild.result
+		currentBuild.result = "SUCCESS"
 		
 		if (currentBuild.result.equals("SUCCESS")) {
 			echo "Result SUCCESS !!!"
