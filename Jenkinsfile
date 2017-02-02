@@ -8,13 +8,25 @@ node {
 				$class: 'hudson.triggers.TimerTrigger',
 				spec  : "H 0 * * 0"
 			]
-		])
+		]),
+		parameters(
+			[
+				boolean(
+					name: 'LIBRARY_BUILD_SKIP', 
+					defaultValue: false
+				)
+			]
+		)
 	])
 
 	stage("1st Job") {
 	
 		echo "******** Start 1stJob ********"
 		
+		stage("Build Param") {
+			sh "echo ${LIBRARY_BUILD_SKIP} >> 1st_job.txt"
+		}
+
 		stage("Create 1st_job.txt") {
 			sh "echo `date` >> 1st_job.txt"
 		}
