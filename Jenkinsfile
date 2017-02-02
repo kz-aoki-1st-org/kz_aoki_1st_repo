@@ -13,24 +13,28 @@ node {
 
 	stage("1st Job") {
 	
-		echo "******** 1stJob test Start ********"
-
-		sh "echo `date` >> 1st_job.txt"
-
-		echo "******** On Jenkins Master ********"
-		sh "pwd; ls -la "
-		echo "******** On Jenkins Master ********"
-
-		archive "1st_job.txt"
+		echo "******** Start 1stJob ********"
 		
-		currentBuild.result = "SUCCESS"
-		
-		if (currentBuild.result.equals("SUCCESS")) {
+		stage("Create 1st_job.txt") {
+			sh "echo `date` >> 1st_job.txt"
+		}
+
+		stage("ls") {
+			echo "******** On Jenkins Master ********"
+			sh "pwd; ls -la "
+			echo "******** On Jenkins Master ********"
+		}
+
+		stage("archive 1st_job.txt") {
+			archive "1st_job.txt"
+		}
+
+		stage("Build kz_aoki_2nd_repo") {
 			echo "Result SUCCESS !!!"
-			build job: "kz-aoki-1st-org/kz_aoki_2nd_repo/${env.BRANCH_NAME}", propagate: false, wait: false
+			build job: "kz-aoki-1st-org/kz_aoki_2nd_repo/${env.BRANCH_NAME}", wait: false
 		}
 		
-		echo "******** 1stJob test End ********"
+		echo "******** End 1stJob ********"
 		
 	}
 }
