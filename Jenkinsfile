@@ -11,8 +11,8 @@ node {
 		]),
 		parameters(
 			[
-				boolean(
-					name: 'LIBRARY_BUILD_SKIP', 
+				booleanParam(
+					name: 'BUILD_LIBRARY_SKIP', 
 					defaultValue: false
 				)
 			]
@@ -24,7 +24,7 @@ node {
 		echo "******** Start 1stJob ********"
 		
 		stage("Build Param") {
-			sh "echo ${LIBRARY_BUILD_SKIP} >> 1st_job.txt"
+			sh "echo ${BUILD_LIBRARY_SKIP} >> 1st_job.txt"
 		}
 
 		stage("Create 1st_job.txt") {
@@ -42,8 +42,12 @@ node {
 		}
 
 		stage("Build kz_aoki_2nd_repo") {
-			echo "Result SUCCESS !!!"
-			build job: "kz-aoki-1st-org/kz_aoki_2nd_repo/${env.BRANCH_NAME}", wait: false
+			
+			if(BUILD_LIBRARY_SKIP == true) {
+				echo "SKIP! - Build kz_aoki_2nd_repo"
+			} else {
+				build job: "kz-aoki-1st-org/kz_aoki_2nd_repo/${env.BRANCH_NAME}", wait: false
+			}
 		}
 		
 		echo "******** End 1stJob ********"
