@@ -13,7 +13,7 @@ node {
 			[
 				booleanParam(
 					name: 'BUILD_LIBRARY_SKIP', 
-					description: 'ドキュメントライブラリビルドをスキップします。', 
+					description: 'チェックオンにするとビルド後のドキュメントライブラリビルドを実行しません。', 
 					defaultValue: false
 				)
 			]
