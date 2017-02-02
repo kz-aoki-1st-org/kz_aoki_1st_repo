@@ -13,6 +13,7 @@ node {
 			[
 				booleanParam(
 					name: 'BUILD_LIBRARY_SKIP', 
+					description: 'ドキュメントライブラリビルドをスキップします。', 
 					defaultValue: false
 				)
 			]
