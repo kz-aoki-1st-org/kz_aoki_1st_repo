@@ -44,8 +44,11 @@ node {
 		
 		def skip = false 
 		if (getBinding().hasVariable("BUILD_LIBRARY_SKIP")) {
+			echo BUILD_LIBRARY_SKIP
 			skip = BUILD_LIBRARY_SKIP
 		}
+		
+		echo skip
 		
 		if ( skip ) {
 			echo "SKIP! - Build kz_aoki_2nd_repo"
