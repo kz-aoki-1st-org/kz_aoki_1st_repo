@@ -44,13 +44,12 @@ node {
 		
 		def skip = false 
 		if (getBinding().hasVariable("BUILD_LIBRARY_SKIP")) {
-			echo BUILD_LIBRARY_SKIP
 			skip = BUILD_LIBRARY_SKIP
 		}
 		
 		echo skip
 		
-		if ( skip ) {
+		if(skip == true)
 			echo "SKIP! - Build kz_aoki_2nd_repo"
 		} else {
 			build job: "kz-aoki-1st-org/kz_aoki_2nd_repo/${env.BRANCH_NAME}", wait: false
