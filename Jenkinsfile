@@ -9,18 +9,19 @@ node {
 				spec  : "H 0 * * 0"
 			]
 		]),
-		parameters(
-			[
-				booleanParam(
+		[
+			$class: 'ParametersDefinitionProperty', 
+			parameterDefinitions: [
+				[
+					$class: 'BooleanParameterDefinition', 
 					name: 'BUILD_LIBRARY_SKIP', 
 					description: 'チェックオンにするとビルド後のドキュメントライブラリビルドを実行しません。', 
 					defaultValue: false
-				)
+				]
 			]
-		)
+		]
 	])
 
-	
 	echo "******** Start 1stJob ********"
 	
 	stage("Build Param") {
