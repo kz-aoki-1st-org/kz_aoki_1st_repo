@@ -15,13 +15,14 @@ node {
 				[
 					$class: 'BooleanParameterDefinition', 
 					name: 'BUILD_LIBRARY_SKIP', 
-					description: 'チェックオンにするとビルド後のドキュメントライブラリビルドを実行しません。', 
+					description: 'チェックするとドキュメントライブラリビルドを実行しません。', 
 					defaultValue: false
 				]
 			]
-		],
-		parameters: [booleanParam(name: 'BUILD_LIBRARY_SKIP', defaultValue: false)]
+		]
 	])
+	
+	
 
 	echo "******** Start 1stJob ********"
 	
@@ -46,7 +47,12 @@ node {
 
 	stage("Build kz_aoki_2nd_repo") {
 		
-		if( BUILD_LIBRARY_SKIP == true ) {
+		def skip = false 
+		if (getBinding().hasVariable("BUILD_LIBRARY_SKIP")) {
+			skip = BUILD_LIBRARY_SKIP
+		}
+		
+		if( skip ) {
 			echo "SKIP! - Build kz_aoki_2nd_repo"
 		} else {
 			build job: "kz-aoki-1st-org/kz_aoki_2nd_repo/${env.BRANCH_NAME}", wait: false
