@@ -24,9 +24,9 @@ node {
 
 	echo "******** Start 1stJob ********"
 	
-	stage("Build Param") {
+	stage("Param") {
 		echo currentBuild.result
-		sh "echo ${BUILD_LIBRARY_SKIP} >> 1st_job.txt"
+		echo BUILD_LIBRARY_SKIP
 	}
 
 	stage("Create 1st_job.txt") {
