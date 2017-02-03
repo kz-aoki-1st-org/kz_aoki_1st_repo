@@ -26,11 +26,6 @@ node {
 
 	echo "******** Start 1stJob ********"
 	
-	stage("Param") {
-		echo currentBuild.result
-		echo BUILD_LIBRARY_SKIP
-	}
-
 	stage("Create 1st_job.txt") {
 		sh "echo `date` >> 1st_job.txt"
 	}
@@ -52,7 +47,7 @@ node {
 			skip = BUILD_LIBRARY_SKIP
 		}
 		
-		if( skip ) {
+		if ( skip ) {
 			echo "SKIP! - Build kz_aoki_2nd_repo"
 		} else {
 			build job: "kz-aoki-1st-org/kz_aoki_2nd_repo/${env.BRANCH_NAME}", wait: false
