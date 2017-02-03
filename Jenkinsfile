@@ -49,7 +49,7 @@ node {
 		
 		echo skip
 		
-		if(skip == true)
+		if (skip == true) {
 			echo "SKIP! - Build kz_aoki_2nd_repo"
 		} else {
 			build job: "kz-aoki-1st-org/kz_aoki_2nd_repo/${env.BRANCH_NAME}", wait: false
