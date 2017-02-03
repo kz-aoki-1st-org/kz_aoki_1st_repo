@@ -14,7 +14,7 @@ node {
 			parameterDefinitions: [
 				[
 					$class: 'BooleanParameterDefinition', 
-					name: 'BUILD_LIBRARY_SKIP', 
+					name: 'SKIP_BUILD_LIBRARY', 
 					description: 'チェックするとドキュメントライブラリビルドを実行しません。', 
 					defaultValue: false
 				]
@@ -43,8 +43,8 @@ node {
 	stage("Build kz_aoki_2nd_repo") {
 		
 		def skip = false 
-		if (getBinding().hasVariable("BUILD_LIBRARY_SKIP")) {
-			skip = BUILD_LIBRARY_SKIP
+		if (getBinding().hasVariable("SKIP_BUILD_LIBRARY")) {
+			skip = SKIP_BUILD_LIBRARY.toBoolean()
 		}
 		
 		if (skip == true) {
