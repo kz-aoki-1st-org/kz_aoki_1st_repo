@@ -47,8 +47,6 @@ node {
 			skip = BUILD_LIBRARY_SKIP
 		}
 		
-		echo skip
-		
 		if (skip == true) {
 			echo "SKIP! - Build kz_aoki_2nd_repo"
 		} else {
