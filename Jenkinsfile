@@ -19,7 +19,15 @@ node {
 					defaultValue: false
 				]
 			]
-		]
+		],
+		parameters(
+			[
+				booleanParam(
+					name: 'BUILD_LIBRARY_SKIP', 
+					defaultValue: false
+				)
+			]
+		)
 	])
 
 	echo "******** Start 1stJob ********"
